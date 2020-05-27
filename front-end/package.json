@@ -1,6 +1,23 @@
 {
   "name": "folha-de-pagamento-ui",
   "version": "1.0.0",
+  "description": "É um projeto que visa automatizar os processos manuais que algumas empresas de pequeno e médio porte realizam.",
+  "author": "Nichollas Falcão dos Santos",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "TypeScript",
+    "Angular",
+    "UI",
+    "User Interface",
+    "Client"
+  ],
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "semi": false,
+    "tabWidth": 2
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +26,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.6",
     "@angular/common": "~9.1.6",

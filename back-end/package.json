@@ -1,10 +1,16 @@
 {
   "name": "folha-de-pagamento-api",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "É um projeto que visa automatizar os processos manuais que algumas empresas de pequeno e médio porte realizam.",
+  "author": "Nichollas Falcão dos Santos",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "TypeScript",
+    "NestJS",
+    "REST",
+    "API"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
