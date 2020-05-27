@@ -1,27 +1,51 @@
-# FolhaDePagamento
+# Folha de pagamento :dollar:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+> É um projeto que visa automatizar os processos manuais que algumas empresas de pequeno e médio porte realizam.
 
-## Development server
+:beginner: Atualmente o projeto ainda esta em estado inicial :checkered_flag:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Instalação
 
-## Code scaffolding
+```sh
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ou
 
-## Build
+```sh
+yarn
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Back-end
 
-## Running unit tests
+```sh
+npm run start:dev
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ou
 
-## Running end-to-end tests
+```sh
+yarn start:dev
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Front-end
 
-## Further help
+_Com Angular CLI_
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```sh
+ng s
+```
+
+## Contato
+
+Nichollas Falcão dos Santos – nychollas2013@hotmail.com
+
+[https://github.com/nychollas09/folha-de-pagamento](https://github.com/nychollas09/folha-de-pagamento)
+
+## Contribuição
+
+1. Fork it (<https://github.com/nychollas09/folha-de-pagamento>)
+2. Crie a sua feature branch (`git checkout -b feature/fooBar`)
+3. Commit suas mudanças (`git commit -am 'Add some fooBar'`)
+4. Push para a branch (`git push origin feature/fooBar`)
+5. Crie um novo Pull Request
