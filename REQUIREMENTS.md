@@ -1,6 +1,6 @@
-# FOLHA DE PAGAMENTO
+# Folha de pagamento :dollar:
 
-# PROFESSORES
+## Professores
 
 - NOME
 - SOBRENOME
@@ -8,14 +8,16 @@
 - SALARIO
 - CARTEIRA_ASSINADA
 
-# DESCONTOS
+## Descontos
 
 - DESCRICAO
 - VALOR
 - TIPO_DESCONTO // 1 - VALE , 2 - FGTS , 3 - FÉRIAS, 4 - ADIANTAMENTO_SALARIAL, 5 - ALIMENTAÇÃO, 6 - RECISAO_CONTRATO, 7 - DEMISSAO_JUSTA_CAUSA, 8 - UNIFORME
 
-### RETIRA ATÉ 35% DO SALÁRIO DO PROFESSOR
+## Regras funcinais
 
-### QUANDO O DESCONTO FOR ANDIANTAMENTO_SALARIO, PODE RETIRAR ATÉ 50% - 70%
+Retira Até 35% Do Salário Do Professor
 
-### SEMPRE É DESCONTADO NESSA ORDEM DE PRIORIDADE: FGTS, ADIANTAMENTO_SALARIO, ALIMENTAÇÃO
+Quando O Desconto For Andiantamento_salario, Pode Retirar Até 50% - 70%
+
+Sempre É Descontado Nessa Ordem De Prioridade: Fgts, Adiantamento_salario, Alimentação
