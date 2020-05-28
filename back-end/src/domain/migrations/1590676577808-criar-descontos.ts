@@ -1,11 +1,9 @@
-import { getAllMembersValueAsString } from 'src/util/enum.util';
 import {
   MigrationInterface,
   QueryRunner,
   Table,
   TableForeignKey,
 } from 'typeorm';
-import { TipoDesconto } from '../enum/tipo-desconto.enum';
 import { Types } from '../enum/typeorm-types-columns.enum';
 
 export class criarDescontos1590676577808 implements MigrationInterface {
@@ -46,12 +44,15 @@ export class criarDescontos1590676577808 implements MigrationInterface {
       },
       {
         name: 'criado',
-        type: Types.DATE,
+        type: Types.TIMESTAMP,
+        default: 'CURRENT_TIMESTAMP',
         isNullable: false,
       },
       {
         name: 'atualizado',
-        type: Types.DATE,
+        type: Types.TIMESTAMP,
+        default: 'CURRENT_TIMESTAMP',
+        onUpdate: 'CURRENT_TIMESTAMP',
         isNullable: false,
       },
     ],

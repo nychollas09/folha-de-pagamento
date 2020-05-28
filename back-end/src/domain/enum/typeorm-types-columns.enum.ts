@@ -5,4 +5,5 @@ export enum Types {
   BOOLEAN = 'BOOLEAN',
   DECIMAL = 'DECIMAL',
   DATE = 'DATE',
+  TIMESTAMP = 'TIMESTAMP',
 }

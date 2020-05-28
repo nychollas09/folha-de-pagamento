@@ -18,7 +18,7 @@ export class Professor extends BaseEntity {
   @Column({ length: 255, nullable: false })
   public sobrenome: string;
 
-  @Column({ length: 11, nullable: false })
+  @Column({ length: 11, unique: true, nullable: false })
   public cpf: string;
 
   @Column({ precision: 65, scale: 2, nullable: false })
@@ -27,10 +27,14 @@ export class Professor extends BaseEntity {
   @Column({ name: 'carteira_assinada', nullable: false })
   public carteiraAssinada: boolean;
 
-  @Column({ default: new Date(), nullable: false })
+  @Column({ default: 'CURRENT_TIMESTAMP', nullable: false })
   public criado: Date;
 
-  @Column({ default: new Date(), nullable: false })
+  @Column({
+    default: 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+    nullable: false,
+  })
   public atualizado: Date;
 
   @OneToMany(

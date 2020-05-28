@@ -20,13 +20,21 @@ export class Desconto extends BaseEntity {
   @Column({ precision: 65, scale: 2, nullable: false })
   public valor: number;
 
-  @Column({ type: 'enum', name: 'tipo_desconto', enum: TipoDesconto })
+  @Column({
+    type: 'enum',
+    name: 'tipo_desconto',
+    enum: ['1', '2', '3', '4', '5', '6', '7', '8'],
+  })
   public tipoDesconto: TipoDesconto;
 
-  @Column({ default: new Date(), nullable: false })
+  @Column({ default: 'CURRENT_TIMESTAMP', nullable: false })
   public criado: Date;
 
-  @Column({ default: new Date(), nullable: false })
+  @Column({
+    default: 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+    nullable: false,
+  })
   public atualizado: Date;
 
   @Column({ name: 'id_professor' })

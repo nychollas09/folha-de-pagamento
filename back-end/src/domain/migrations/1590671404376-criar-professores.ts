@@ -29,6 +29,7 @@ export class criarProfessores1590671404376 implements MigrationInterface {
         name: 'cpf',
         type: Types.VARCHAR,
         length: '11',
+        isUnique: true,
         isNullable: false,
       },
       {
@@ -45,12 +46,15 @@ export class criarProfessores1590671404376 implements MigrationInterface {
       },
       {
         name: 'criado',
-        type: Types.DATE,
+        type: Types.TIMESTAMP,
+        default: 'CURRENT_TIMESTAMP',
         isNullable: false,
       },
       {
         name: 'atualizado',
-        type: Types.DATE,
+        type: Types.TIMESTAMP,
+        default: 'CURRENT_TIMESTAMP',
+        onUpdate: 'CURRENT_TIMESTAMP',
         isNullable: false,
       },
     ],
