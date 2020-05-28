@@ -1,0 +1,8 @@
+export enum Types {
+  BIGINT = 'BIGINT',
+  VARCHAR = 'VARCHAR',
+  INTEGER = 'INTEGER',
+  BOOLEAN = 'BOOLEAN',
+  DECIMAL = 'DECIMAL',
+  DATE = 'DATE',
+}

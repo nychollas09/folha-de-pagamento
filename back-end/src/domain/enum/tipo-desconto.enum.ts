@@ -1,0 +1,10 @@
+export enum TipoDesconto {
+  VALE = 1,
+  FGTS = 2,
+  FERIAS = 3,
+  ADIANTAMENTO_SALARIAL = 4,
+  ALIMENTACAO = 5,
+  RECISAO_CONTRATO = 6,
+  DEMISSAO_JUSTA_CAUSA = 7,
+  UNIFORME = 8,
+}
