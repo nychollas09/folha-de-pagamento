@@ -1,9 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Professor } from 'src/domain/model/professor.entity';
-import { Repository } from 'typeorm';
-import { ProfessorFilter } from 'src/domain/filter/professor.filter';
+import { Repository, FindManyOptions } from 'typeorm';
+import { ProfessorFilter } from 'src/domain/filter/professor-filter';
 import { Page } from 'src/domain/interface/page';
+import { PageUtil } from 'src/shared/util/page.util';
+import { QueryUtil } from 'src/shared/util/query.util';
+import { Pageable } from 'src/domain/interface/pageable';
+import { HttpExceptionResponse } from 'src/domain/interface/http-exception-response';
 
 @Injectable()
 export class ProfessorService {
@@ -18,29 +22,19 @@ export class ProfessorService {
 
   public async obterProfessoresPaginadoPorFiltro(
     professorFilter: ProfessorFilter,
+    pageable: Pageable,
   ): Promise<Page<Professor>> {
-    const { page, size } = professorFilter;
-    const [professores, countByFilter, countAllEntities] = await Promise.all([
-      this.professorRepository.find({
-        where: { nome: professorFilter.nome },
-        skip: size * page,
-        take: size,
-      }),
-      this.professorRepository.count({ where: { nome: professorFilter.nome } }),
-      this.professorRepository.count(),
-    ]);
-    const totalPages = Math.ceil(countByFilter / size);
-    return {
-      content: professores,
-      empty: professores.length < 1,
-      first: Number(page) === 0,
-      last: totalPages === Number(page),
-      number: page,
-      numberOfElements: professores ? professores.length : 0,
-      size,
-      totalElements: countAllEntities,
-      totalPages,
-    };
+    console.log(professorFilter, pageable);
+    const { page, size } = pageable;
+    const options: FindManyOptions<Professor> = QueryUtil.createWhereConditionFromFilter<
+      Professor
+    >(professorFilter, ['nome', 'sobrenome']);
+    return PageUtil.pageByCount<Professor>(
+      { page, size },
+      this.professorRepository,
+      options,
+      Professor,
+    );
   }
 
   public async obterProfessorPorId(id: number): Promise<Professor> {
@@ -48,37 +42,36 @@ export class ProfessorService {
     if (!professorIdentificado) {
       throw new HttpException(
         {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Professor não encontrado para o id',
-        },
-        HttpStatus.BAD_REQUEST,
+          message: 'Professor não encontrado para o id informado.',
+          error: 'Not found',
+          statusCode: HttpStatus.NOT_FOUND,
+        } as HttpExceptionResponse,
+        HttpStatus.NOT_FOUND,
       );
     }
     return professorIdentificado;
   }
 
   public async salvarProfessor(professor: Professor): Promise<Professor> {
-    const professorPorCpf = await this.professorRepository
-      .find({
-        where: {
-          cpf: professor.cpf,
-        },
-        take: 1,
-      })
-      .then((professores) => professores[0]);
+    const professorPorCpf = await this.obterProfessorPorCpf(professor.cpf);
     if (professorPorCpf) {
       throw new HttpException(
         {
-          status: HttpStatus.CONFLICT,
-          error: 'Professor já existente por cpf',
-        },
+          message: 'Professor já existente por cpf.',
+          error: 'Conflict',
+          statusCode: HttpStatus.CONFLICT,
+        } as HttpExceptionResponse,
         HttpStatus.CONFLICT,
       );
     }
     return this.professorRepository.save(professor);
   }
 
-  public async atualizarProfessor(professor: Professor): Promise<void> {
+  public async atualizarProfessor(
+    idProfessor: number,
+    professor: Professor,
+  ): Promise<void> {
+    professor.id = idProfessor;
     await this.obterProfessorPorId(professor.id);
     this.professorRepository.save(professor);
   }
@@ -86,5 +79,17 @@ export class ProfessorService {
   public async excluirProfessor(idProfessor: number): Promise<void> {
     await this.obterProfessorPorId(idProfessor);
     this.professorRepository.delete(idProfessor);
+  }
+
+  private async obterProfessorPorCpf(cpf: string): Promise<Professor> {
+    const professorPorCpf = await this.professorRepository
+      .find({
+        where: {
+          cpf,
+        },
+        take: 1,
+      })
+      .then((professores) => professores[0]);
+    return professorPorCpf;
   }
 }
